@@ -5615,10 +5615,10 @@ Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
 var n=Ember.Component.extend({layout:t.default,tagName:"li"})
 e.default=n}),define("ember-uikit/components/uk-modal",["exports","ember-uikit/templates/components/uk-modal","uikit"],function(e,t,n){"use strict"
 Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
-var r=Ember.Component.extend({layout:t.default,closable:!0,init:function(){this._super.apply(this,arguments)
+var r=Ember.Component.extend({layout:t.default,escClose:!0,bgClose:!0,stack:!1,container:!0,clsPage:"uk-modal-page",clsPanel:"uk-modal-dialog",selClose:[".uk-modal-close",".uk-modal-close-default",".uk-modal-close-outside",".uk-modal-close-full"].join(", "),init:function(){this._super.apply(this,arguments)
 var e=Ember.getOwner(this).resolveRegistration("config:environment").APP
 this.set("container",document.querySelector(e.rootElement||"body"))},_show:function(){this.modal&&this.set("visible",!0)},_hide:function(){this.modal&&this.set("visible",!1)},didInsertElement:function(){var e=this,t="#modal-".concat(this.elementId)
-this.set("modal",n.default.modal(t,{container:!1,bgClose:this.get("closable"),escClose:this.get("closable")})),n.default.util.on(t,"show",function(){return e._show()}),n.default.util.on(t,"hide",function(){return e._hide()})},didReceiveAttrs:function(){var e=this
+this.set("modal",n.default.modal(t,{escClose:this.get("escClose"),bgClose:this.get("bgClose"),stack:this.get("stack"),container:this.get("container"),clsPage:this.get("clsPage"),clsPanel:this.get("clsPanel"),selClose:this.get("selClose")})),n.default.util.on(t,"show",function(){return e._show()}),n.default.util.on(t,"hide",function(){return e._hide()})},didReceiveAttrs:function(){var e=this
 Ember.run.scheduleOnce("afterRender",function(){e.visible?e.modal.show():e.modal.hide()})},willDestroyElement:function(){this.modal.$el.parentNode.removeChild(this.modal.$el),this.set("modal",null)}})
 e.default=r}),define("ember-uikit/components/uk-sortable",["exports","uikit"],function(e,t){"use strict"
 Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
