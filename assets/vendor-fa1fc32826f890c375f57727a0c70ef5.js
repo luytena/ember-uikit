@@ -5874,10 +5874,11 @@ var n=Ember.Component.extend({layout:t.default,animation:"",contentId:Ember.comp
 e.default=n}),define("ember-uikit/components/uk-switcher/content",["exports","ember-uikit/templates/components/uk-switcher/content"],function(e,t){"use strict"
 Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
 var n=Ember.Component.extend({layout:t.default,tagName:"ul",classNames:["uk-switcher"]})
-e.default=n}),define("ember-uikit/components/uk-switcher/content/item",["exports","ember-uikit/templates/components/uk-switcher/content/item"],function(e,t){"use strict"
+e.default=n}),define("ember-uikit/components/uk-switcher/content/item",["exports","ember-uikit/templates/components/uk-switcher/content/item","uikit"],function(e,t,n){"use strict"
 Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
-var n=Ember.Component.extend({layout:t.default,tagName:"li"})
-e.default=n}),define("ember-uikit/components/uk-switcher/nav",["exports","ember-uikit/templates/components/uk-switcher/nav"],function(e,t){"use strict"
+var r=function(){},i=Ember.Component.extend({layout:t.default,tagName:"li",setEvents:function(){var e={beforeshow:this.getWithDefault("on-beforeshow",r),show:this.getWithDefault("on-show",r),shown:this.getWithDefault("on-shown",r),beforehide:this.getWithDefault("on-beforehide",r),hide:this.getWithDefault("on-hide",r),hidden:this.getWithDefault("on-hidden",r)}
+for(var t in e)n.default.util.on(this.element,t,e[t])},didInsertElement:function(){this._super.apply(this,arguments),this.setEvents()}})
+e.default=i}),define("ember-uikit/components/uk-switcher/nav",["exports","ember-uikit/templates/components/uk-switcher/nav"],function(e,t){"use strict"
 Object.defineProperty(e,"__esModule",{value:!0}),e.default=e.TYPES=void 0
 var n={TAB:{name:"tab",componentName:"uk-tab"},SUBNAV:{name:"subnav",componentName:"uk-subnav"}}
 e.TYPES=n
