@@ -6057,10 +6057,24 @@ Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
 var n=Ember.Component.extend({layout:t.default,tagName:"li"})
 e.default=n})),define("ember-uikit/components/uk-modal",["exports","ember-uikit/templates/components/uk-modal","uikit"],(function(e,t,n){"use strict"
 Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
-var r=function(){},i=Ember.Component.extend({layout:t.default,modalClass:"",dialogClass:"",btnClose:!0,escClose:!0,bgClose:!0,stack:!1,container:!0,clsPage:"uk-modal-page",clsPanel:"uk-modal-dialog",selClose:[".uk-modal-close",".uk-modal-close-default",".uk-modal-close-outside",".uk-modal-close-full"].join(", "),modalId:Ember.computed("elementId",(function(){return"modal-".concat(this.elementId)})),containerElement:Ember.computed("container",(function(){return Ember.getOwner(this).lookup("service:-document").querySelector(this.container)})),init:function(){this._super.apply(this,arguments)
-var e=Ember.getOwner(this).resolveRegistration("config:environment")
-this.set("container",e.APP.rootElement||"body")},didInsertElement:function(){this.set("modal",n.default.modal("#".concat(this.modalId),this.getProperties("escClose","bgClose","stack","container","clsPage","clsPanel","selClose")))},didReceiveAttrs:function(){Ember.run.scheduleOnce("afterRender",this,"toggleModal")},willDestroyElement:function(){this.modal&&(this.modal.$destroy(!0),this.set("modal",null))},toggleModal:function(){var e=this
-this.modal&&(this.visible?(this.modal.show(),n.default.util.on("#".concat(this.modalId),"hidden",(function(){return e.getWithDefault("on-hide",r)}))):(this.modal.hide(),n.default.util.on("#".concat(this.modalId),"show",(function(){return e.getWithDefault("on-show",r)}))))}})
+var r=function(){},i=Ember.Component.extend({layout:t.default,modalClass:"",dialogClass:"",btnClose:!0,escClose:!0,bgClose:!0,stack:!1,container:!0,clsPage:"uk-modal-page",clsPanel:"uk-modal-dialog",selClose:[".uk-modal-close",".uk-modal-close-default",".uk-modal-close-outside",".uk-modal-close-full"].join(", "),isAnimating:!1,modalId:Ember.computed("elementId",(function(){return"modal-".concat(this.elementId)})),modalSelector:Ember.computed("modalId",(function(){return"#".concat(this.modalId)})),containerElement:Ember.computed("container",(function(){return Ember.getOwner(this).lookup("service:-document").querySelector(this.container)})),init:function(){var e=this
+this._super.apply(this,arguments)
+var t=Ember.getOwner(this).resolveRegistration("config:environment")
+this.set("container",t.APP.rootElement||"body"),this.set("eventHandlers",{hidden:function(){return regeneratorRuntime.async((function(t){for(;;)switch(t.prev=t.next){case 0:if(!e.visible){t.next=3
+break}return t.next=3,regeneratorRuntime.awrap(e.getWithDefault("on-hide",r)())
+case 3:e.set("isAnimating",!1)
+case 4:case"end":return t.stop()}}))},show:function(){return regeneratorRuntime.async((function(t){for(;;)switch(t.prev=t.next){case 0:if(e.visible){t.next=3
+break}return t.next=3,regeneratorRuntime.awrap(e.getWithDefault("on-show",r)())
+case 3:case"end":return t.stop()}}))},shown:function(){e.set("isAnimating",!1)},beforehide:function(){e.set("isAnimating",!0)},beforeshow:function(){e.set("isAnimating",!0)}})},didInsertElement:function(){this.set("modal",n.default.modal("#".concat(this.modalId),this.getProperties("escClose","bgClose","stack","container","clsPage","clsPanel","selClose"))),Ember.run.scheduleOnce("afterRender",this,"_setupEvents")},didReceiveAttrs:function(){Ember.run.scheduleOnce("afterRender",this,"toggleModal")},willDestroyElement:function(){this.modal&&(this._teardownEvents(),this.modal.$destroy(!0),this.set("modal",null))},_setupEvents:function(){var e=this
+Object.keys(this.eventHandlers).forEach((function(t){n.default.util.on(e.modalSelector,t,e.get("eventHandlers.".concat(t)))}))},_teardownEvents:function(){var e=this
+Object.keys(this.eventHandlers).forEach((function(t){n.default.util.off(e.modalSelector,t,e.get("eventHandlers.".concat(t)))}))},toggleModal:function(){return regeneratorRuntime.async((function(e){for(;;)switch(e.prev=e.next){case 0:if(this.modal){e.next=2
+break}return e.abrupt("return")
+case 2:if(!this.visible){e.next=7
+break}return e.next=5,regeneratorRuntime.awrap(this.modal.show())
+case 5:e.next=9
+break
+case 7:return e.next=9,regeneratorRuntime.awrap(this.modal.hide())
+case 9:case"end":return e.stop()}}),null,this)}})
 e.default=i})),define("ember-uikit/components/uk-modal/body",["exports","ember-uikit/templates/components/uk-modal/body"],(function(e,t){"use strict"
 Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
 var n=Ember.Component.extend({layout:t.default,tagName:"div",classNames:["uk-modal-body"]})
@@ -6222,7 +6236,7 @@ Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
 var t=Ember.HTMLBars.template({id:"phZO7pUg",block:'{"symbols":["&default"],"statements":[[14,1]],"hasEval":false}',meta:{moduleName:"ember-uikit/templates/components/uk-list/item.hbs"}})
 e.default=t})),define("ember-uikit/templates/components/uk-modal",["exports"],(function(e){"use strict"
 Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
-var t=Ember.HTMLBars.template({id:"fXfzyjPS",block:'{"symbols":["@modalClass","@dialogClass","&default"],"statements":[[4,"in-element",[[24,["containerElement"]]],[["guid","nextSibling"],["%cursor:0%",null]],{"statements":[[0,"  "],[7,"div",true],[11,"id",[23,0,["modalId"]]],[11,"class",[23,1,[]]],[8],[0,"\\n    "],[7,"div",true],[11,"class",[29,["uk-modal-dialog ",[23,2,[]]]]],[8],[0,"\\n      "],[4,"if",[[23,0,["btnClose"]]],null,{"statements":[[7,"button",true],[10,"class","uk-modal-close-default"],[10,"uk-close",""],[10,"type","button"],[8],[9]],"parameters":[]},null],[0,"\\n      "],[14,3,[[28,"hash",null,[["header","body","footer"],[[28,"component",["uk-modal/header"],null],[28,"component",["uk-modal/body"],null],[28,"component",["uk-modal/footer"],null]]]]]],[0,"\\n    "],[9],[0,"\\n  "],[9],[0,"\\n"]],"parameters":[]},null]],"hasEval":false}',meta:{moduleName:"ember-uikit/templates/components/uk-modal.hbs"}})
+var t=Ember.HTMLBars.template({id:"X5D52PgO",block:'{"symbols":["@modalClass","@dialogClass","&default"],"statements":[[4,"in-element",[[24,["containerElement"]]],[["guid","nextSibling"],["%cursor:0%",null]],{"statements":[[0,"  "],[7,"div",true],[11,"id",[23,0,["modalId"]]],[11,"class",[23,1,[]]],[11,"data-test-animating",[23,0,["isAnimating"]]],[8],[0,"\\n    "],[7,"div",true],[11,"class",[29,["uk-modal-dialog ",[23,2,[]]]]],[8],[0,"\\n      "],[4,"if",[[23,0,["btnClose"]]],null,{"statements":[[7,"button",true],[10,"class","uk-modal-close-default"],[10,"uk-close",""],[10,"type","button"],[8],[9]],"parameters":[]},null],[0,"\\n      "],[14,3,[[28,"hash",null,[["header","body","footer"],[[28,"component",["uk-modal/header"],null],[28,"component",["uk-modal/body"],null],[28,"component",["uk-modal/footer"],null]]]]]],[0,"\\n    "],[9],[0,"\\n  "],[9],[0,"\\n"]],"parameters":[]},null]],"hasEval":false}',meta:{moduleName:"ember-uikit/templates/components/uk-modal.hbs"}})
 e.default=t})),define("ember-uikit/templates/components/uk-modal/body",["exports"],(function(e){"use strict"
 Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
 var t=Ember.HTMLBars.template({id:"AwsBapOe",block:'{"symbols":["&default"],"statements":[[14,1],[0,"\\n"]],"hasEval":false}',meta:{moduleName:"ember-uikit/templates/components/uk-modal/body.hbs"}})
