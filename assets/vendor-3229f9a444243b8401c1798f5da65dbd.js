@@ -6060,12 +6060,14 @@ Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
 var r=function(){},i=Ember.Component.extend({layout:t.default,modalClass:"",dialogClass:"",btnClose:!0,escClose:!0,bgClose:!0,stack:!1,container:!0,clsPage:"uk-modal-page",clsPanel:"uk-modal-dialog",selClose:[".uk-modal-close",".uk-modal-close-default",".uk-modal-close-outside",".uk-modal-close-full"].join(", "),isAnimating:!1,modalId:Ember.computed("elementId",(function(){return"modal-".concat(this.elementId)})),modalSelector:Ember.computed("modalId",(function(){return"#".concat(this.modalId)})),containerElement:Ember.computed("container",(function(){return Ember.getOwner(this).lookup("service:-document").querySelector(this.container)})),init:function(){var e=this
 this._super.apply(this,arguments)
 var t=Ember.getOwner(this).resolveRegistration("config:environment")
-this.set("container",t.APP.rootElement||"body"),this.set("eventHandlers",{hidden:function(){return regeneratorRuntime.async((function(t){for(;;)switch(t.prev=t.next){case 0:if(!e.visible){t.next=3
-break}return t.next=3,regeneratorRuntime.awrap(e.getWithDefault("on-hide",r)())
-case 3:e.set("isAnimating",!1)
-case 4:case"end":return t.stop()}}))},show:function(){return regeneratorRuntime.async((function(t){for(;;)switch(t.prev=t.next){case 0:if(e.visible){t.next=3
-break}return t.next=3,regeneratorRuntime.awrap(e.getWithDefault("on-show",r)())
-case 3:case"end":return t.stop()}}))},shown:function(){e.set("isAnimating",!1)},beforehide:function(){e.set("isAnimating",!0)},beforeshow:function(){e.set("isAnimating",!0)}})},didInsertElement:function(){this.set("modal",n.default.modal("#".concat(this.modalId),this.getProperties("escClose","bgClose","stack","container","clsPage","clsPanel","selClose"))),Ember.run.scheduleOnce("afterRender",this,"_setupEvents")},didReceiveAttrs:function(){Ember.run.scheduleOnce("afterRender",this,"toggleModal")},willDestroyElement:function(){this.modal&&(this._teardownEvents(),this.modal.$destroy(!0),this.set("modal",null))},_setupEvents:function(){var e=this
+this.set("container",t.APP.rootElement||"body"),this.set("eventHandlers",{hidden:function(t){return regeneratorRuntime.async((function(n){for(;;)switch(n.prev=n.next){case 0:if(t.currentTarget!==t.target){n.next=5
+break}if(!e.visible){n.next=4
+break}return n.next=4,regeneratorRuntime.awrap(e.getWithDefault("on-hide",r)())
+case 4:e.set("isAnimating",!1)
+case 5:case"end":return n.stop()}}))},show:function(t){return regeneratorRuntime.async((function(n){for(;;)switch(n.prev=n.next){case 0:if(t.currentTarget!==t.target){n.next=4
+break}if(e.visible){n.next=4
+break}return n.next=4,regeneratorRuntime.awrap(e.getWithDefault("on-show",r)())
+case 4:case"end":return n.stop()}}))},shown:function(t){t.currentTarget===t.target&&e.set("isAnimating",!1)},beforehide:function(t){t.currentTarget===t.target&&e.set("isAnimating",!0)},beforeshow:function(t){t.currentTarget===t.target&&e.set("isAnimating",!0)}})},didInsertElement:function(){this.set("modal",n.default.modal("#".concat(this.modalId),this.getProperties("escClose","bgClose","stack","container","clsPage","clsPanel","selClose"))),Ember.run.scheduleOnce("afterRender",this,"_setupEvents")},didReceiveAttrs:function(){Ember.run.scheduleOnce("afterRender",this,"toggleModal")},willDestroyElement:function(){this.modal&&(this._teardownEvents(),this.modal.$destroy(!0),this.set("modal",null))},_setupEvents:function(){var e=this
 Object.keys(this.eventHandlers).forEach((function(t){n.default.util.on(e.modalSelector,t,e.get("eventHandlers.".concat(t)))}))},_teardownEvents:function(){var e=this
 Object.keys(this.eventHandlers).forEach((function(t){n.default.util.off(e.modalSelector,t,e.get("eventHandlers.".concat(t)))}))},toggleModal:function(){return regeneratorRuntime.async((function(e){for(;;)switch(e.prev=e.next){case 0:if(this.modal){e.next=2
 break}return e.abrupt("return")
