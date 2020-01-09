@@ -5458,14 +5458,14 @@ function n(e){t++
 for(var n=0,i=e.length;n<i;++n){var o=e[n]
 o._seenIndex<t&&(o._seenIndex=t,r(o))}}function r(e){for(var t=e.numRunning,n=e.numQueued,r=Ember.get(e,"group");r;)Ember.set(r,"numRunning",t),Ember.set(r,"numQueued",n),r=Ember.get(r,"group")}var i=Ember.Object.extend({lastPerformed:null,lastStarted:null,lastRunning:null,lastSuccessful:null,lastComplete:null,lastErrored:null,lastCanceled:null,lastIncomplete:null,performCount:0,boundHandleFulfill:null,boundHandleReject:null,init:function(){this._super.apply(this,arguments),this.activeTaskInstances=[],this.queuedTaskInstances=[]},cancelAll:function(e){var t=[]
 this.spliceTaskInstances(e,this.activeTaskInstances,0,this.activeTaskInstances.length,t),this.spliceTaskInstances(e,this.queuedTaskInstances,0,this.queuedTaskInstances.length,t),n(t)},spliceTaskInstances:function(e,t,n,r,i){for(var o=n;o<n+r;++o){var s=t[o]
-s.hasStarted||s.task.decrementProperty("numQueued"),s.cancel(e),i&&i.push(s.task)}t.splice(n,r)},schedule:function(e){Ember.set(this,"lastPerformed",e),this.incrementProperty("performCount"),e.task.incrementProperty("numQueued"),this.queuedTaskInstances.push(e),this._flushQueues()},_flushQueues:function(){for(var e=[],t=0;t<this.activeTaskInstances.length;++t)e.push(this.activeTaskInstances[t].task)
+s.hasStarted||Ember.set(s.task,"numQueued",s.task.numQueued-1),s.cancel(e),i&&i.push(s.task)}t.splice(n,r)},schedule:function(e){Ember.set(this,"lastPerformed",e),Ember.set(this,"performCount",this.performCount+1),Ember.set(e.task,"numQueued",e.task.numQueued+1),this.queuedTaskInstances.push(e),this._flushQueues()},_flushQueues:function(){for(var e=[],t=0;t<this.activeTaskInstances.length;++t)e.push(this.activeTaskInstances[t].task)
 this.activeTaskInstances=function(e){for(var t=[],n=0,r=e.length;n<r;++n){var i=e[n]
 !1===Ember.get(i,"isFinished")&&t.push(i)}return t}(this.activeTaskInstances),this.bufferPolicy.schedule(this)
 for(var r=null,i=0;i<this.activeTaskInstances.length;++i){var o=this.activeTaskInstances[i]
 o.hasStarted||(this._startTaskInstance(o),r=o),e.push(o.task)}r&&Ember.set(this,"lastStarted",r),Ember.set(this,"lastRunning",r)
 for(var s=0;s<this.queuedTaskInstances.length;++s)e.push(this.queuedTaskInstances[s].task)
 n(e),Ember.set(this,"concurrency",this.activeTaskInstances.length)},_startTaskInstance:function(e){var t=this,n=e.task
-n.decrementProperty("numQueued"),n.incrementProperty("numRunning"),e._start()._onFinalize((function(){n.decrementProperty("numRunning")
+Ember.set(n,"numQueued",n.numQueued-1),Ember.set(n,"numRunning",n.numRunning+1),e._start()._onFinalize((function(){Ember.set(n,"numRunning",n.numRunning-1)
 var r=e._completionState
 Ember.set(t,"lastComplete",e),1===r?Ember.set(t,"lastSuccessful",e):(2===r?Ember.set(t,"lastErrored",e):3===r&&Ember.set(t,"lastCanceled",e),Ember.set(t,"lastIncomplete",e)),Ember.run.once(t,t._flushQueues)}))}})
 e.default=i})),define("ember-concurrency/-task-group",["exports","ember-concurrency/utils","ember-concurrency/-task-state-mixin","ember-concurrency/-property-modifiers-mixin"],(function(e,t,n,r){"use strict"
@@ -5586,7 +5586,7 @@ if(null!=n)for(var r in n)Object.prototype.hasOwnProperty.call(n,r)&&(e[r]=n[r])
 e.objectAssign=c
 var h="__invoke_symbol__"
 e.INVOKE=h
-for(var f=["@ember/-internals/glimmer/index","@ember/-internals/glimmer","ember-glimmer","ember-glimmer/helpers/action","ember-routing-htmlbars/keywords/closure-action","ember-routing/keywords/closure-action"],d=0;d<f.length;d++)if(f[d]in Ember.__loader.registry){e.INVOKE=h=Ember.__loader.require(f[d]).INVOKE
+for(var f=["@ember/-internals/glimmer/index","@ember/-internals/glimmer","ember-glimmer","ember-glimmer/helpers/action","ember-htmlbars/keywords/closure-action","ember-routing-htmlbars/keywords/closure-action","ember-routing/keywords/closure-action"],d=0;d<f.length;d++)if(f[d]in Ember.__loader.registry){e.INVOKE=h=Ember.__loader.require(f[d]).INVOKE
 break}e.cancelableSymbol="__ec_cancel__"
 e.yieldableSymbol="__ec_yieldable__"
 e.YIELDABLE_CONTINUE="next"
