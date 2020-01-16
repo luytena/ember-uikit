@@ -5440,7 +5440,7 @@ e[r](o).then(a.resolve,a.reject)
 var u=!1,l=function(){u||(u=!0,s.forEach((function(e){e&&(e instanceof t.default?e.cancel():"function"==typeof e[n.cancelableSymbol]&&e[n.cancelableSymbol]())})))},c=a.promise.finally(l)
 return c[n.cancelableSymbol]=l,c}}e.hash=u})),define("ember-concurrency/-encapsulated-task",["exports","ember-concurrency/-task-instance"],(function(e,t){"use strict"
 Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
-var n=t.default.extend({_makeIterator:function(){var e=this.get("perform")
+var n=t.default.extend({_makeIterator:function(){var e=this.perform
 return e.apply(this,this.args)},perform:null})
 e.default=n})),define("ember-concurrency/-helpers",["exports"],(function(e){"use strict"
 function t(e){return function(e){if(Array.isArray(e)){for(var t=0,n=new Array(e.length);t<e.length;t++)n[t]=e[t]
@@ -5460,7 +5460,7 @@ o._seenIndex<t&&(o._seenIndex=t,r(o))}}function r(e){for(var t=e.numRunning,n=e.
 this.spliceTaskInstances(e,this.activeTaskInstances,0,this.activeTaskInstances.length,t),this.spliceTaskInstances(e,this.queuedTaskInstances,0,this.queuedTaskInstances.length,t),n(t)},spliceTaskInstances:function(e,t,n,r,i){for(var o=n;o<n+r;++o){var s=t[o]
 s.hasStarted||Ember.set(s.task,"numQueued",s.task.numQueued-1),s.cancel(e),i&&i.push(s.task)}t.splice(n,r)},schedule:function(e){Ember.set(this,"lastPerformed",e),Ember.set(this,"performCount",this.performCount+1),Ember.set(e.task,"numQueued",e.task.numQueued+1),this.queuedTaskInstances.push(e),this._flushQueues()},_flushQueues:function(){for(var e=[],t=0;t<this.activeTaskInstances.length;++t)e.push(this.activeTaskInstances[t].task)
 this.activeTaskInstances=function(e){for(var t=[],n=0,r=e.length;n<r;++n){var i=e[n]
-!1===Ember.get(i,"isFinished")&&t.push(i)}return t}(this.activeTaskInstances),this.bufferPolicy.schedule(this)
+!1===i.isFinished&&t.push(i)}return t}(this.activeTaskInstances),this.bufferPolicy.schedule(this)
 for(var r=null,i=0;i<this.activeTaskInstances.length;++i){var o=this.activeTaskInstances[i]
 o.hasStarted||(this._startTaskInstance(o),r=o),e.push(o.task)}r&&Ember.set(this,"lastStarted",r),Ember.set(this,"lastRunning",r)
 for(var s=0;s<this.queuedTaskInstances.length;++s)e.push(this.queuedTaskInstances[s].task)
@@ -5480,18 +5480,18 @@ e.PERFORM_TYPE_UNLINKED="PERFORM_TYPE_UNLINKED"
 e.PERFORM_TYPE_LINKED="PERFORM_TYPE_LINKED"
 var n=[]
 function r(e){return e&&"TaskCancelation"===e.name}function i(e){return function(){var t
-return this._hasSubscribed=!0,(t=this.get("_promise"))[e].apply(t,arguments)}}var o={iterator:null,_disposer:null,_completionState:0,task:null,args:[],_hasSubscribed:!1,_runLoop:!0,_debug:!1,_hasEnabledEvents:!1,cancelReason:null,_performType:"PERFORM_TYPE_DEFAULT",_expectsLinkedYield:!1,value:null,error:null,isSuccessful:!1,isError:!1,isCanceled:Ember.computed.and("isCanceling","isFinished"),isCanceling:!1,hasStarted:!1,isFinished:!1,isRunning:Ember.computed.not("isFinished"),state:Ember.computed("isDropped","isCanceling","hasStarted","isFinished",(function(){return Ember.get(this,"isDropped")?"dropped":Ember.get(this,"isCanceling")?"canceled":Ember.get(this,"isFinished")?"finished":Ember.get(this,"hasStarted")?"running":"waiting"})),isDropped:Ember.computed("isCanceling","hasStarted",(function(){return Ember.get(this,"isCanceling")&&!Ember.get(this,"hasStarted")})),_index:1,_start:function(){return this.hasStarted||this.isCanceling?this:(Ember.set(this,"hasStarted",!0),this._scheduleProceed(t.YIELDABLE_CONTINUE,void 0),this._triggerEvent("started",this),this)},toString:function(){var e,t,n,r,i=""+this.task
+return this._hasSubscribed=!0,(t=this.get("_promise"))[e].apply(t,arguments)}}var o={iterator:null,_disposer:null,_completionState:0,task:null,args:[],_hasSubscribed:!1,_runLoop:!0,_debug:!1,_hasEnabledEvents:!1,cancelReason:null,_performType:"PERFORM_TYPE_DEFAULT",_expectsLinkedYield:!1,value:null,error:null,isSuccessful:!1,isError:!1,isCanceled:Ember.computed.and("isCanceling","isFinished"),isCanceling:!1,hasStarted:!1,isFinished:!1,isRunning:Ember.computed.not("isFinished"),state:Ember.computed("isDropped","isCanceling","hasStarted","isFinished",(function(){return Ember.get(this,"isDropped")?"dropped":this.isCanceling?"canceled":this.isFinished?"finished":this.hasStarted?"running":"waiting"})),isDropped:Ember.computed("isCanceling","hasStarted",(function(){return this.isCanceling&&!this.hasStarted})),_index:1,_start:function(){return this.hasStarted||this.isCanceling?this:(Ember.set(this,"hasStarted",!0),this._scheduleProceed(t.YIELDABLE_CONTINUE,void 0),this._triggerEvent("started",this),this)},toString:function(){var e,t,n,r,i=""+this.task
 return n=0,r=".perform()",(e=i).slice(0,t=-1)+(r||"")+e.slice(t+n)},cancel:function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:".cancel() was explicitly called"
-if(!this.isCanceling&&!Ember.get(this,"isFinished")){Ember.set(this,"isCanceling",!0)
-var n=Ember.get(this,"task._propertyName")||"<unknown>"
+if(!this.isCanceling&&!this.isFinished){Ember.set(this,"isCanceling",!0)
+var n=this.task&&this.task._propertyName||"<unknown>"
 Ember.set(this,"cancelReason","TaskInstance '".concat(n,"' was canceled because ").concat(e,". For more information, see: http://ember-concurrency.com/docs/task-cancelation-help")),this.hasStarted?this._proceedSoon(t.YIELDABLE_CANCEL,null):this._finalize(null,3)}},_defer:null,_promise:Ember.computed((function(){return this._defer=Ember.RSVP.defer(),this._maybeResolveDefer(),this._defer.promise})),_maybeResolveDefer:function(){this._defer&&this._completionState&&(1===this._completionState?this._defer.resolve(this.value):this._defer.reject(this.error))},then:i("then"),catch:i("catch"),finally:i("finally"),_finalize:function(e,t){var n=t,r=e
 this._index++,this.isCanceling&&(n=3,r=new Error(this.cancelReason),(this._debug||Ember.ENV.DEBUG_TASKS)&&console.log(this.cancelReason),r.name="TaskCancelation",r.taskInstance=this),Ember.set(this,"_completionState",n),Ember.set(this,"_result",r),1===n?(Ember.set(this,"isSuccessful",!0),Ember.set(this,"value",r)):2===n?(Ember.set(this,"isError",!0),Ember.set(this,"error",r)):3===n&&Ember.set(this,"error",r),Ember.set(this,"isFinished",!0),this._dispose(),this._runFinalizeCallbacks(),this._dispatchFinalizeEvents()},_finalizeCallbacks:null,_onFinalize:function(e){this._finalizeCallbacks||(this._finalizeCallbacks=[]),this._finalizeCallbacks.push(e),this._completionState&&this._runFinalizeCallbacks()},_runFinalizeCallbacks:function(){if(this._maybeResolveDefer(),this._finalizeCallbacks){for(var e=0,t=this._finalizeCallbacks.length;e<t;++e)this._finalizeCallbacks[e]()
 this._finalizeCallbacks=null}this._maybeThrowUnhandledTaskErrorLater()},_maybeThrowUnhandledTaskErrorLater:function(){var e=this
 this._hasSubscribed||2!==this._completionState||Ember.run.schedule(Ember.run.backburner.queueNames[Ember.run.backburner.queueNames.length-1],(function(){e._hasSubscribed||r(e.error)||Ember.RSVP.reject(e.error)}))},_dispatchFinalizeEvents:function(){switch(this._completionState){case 1:this._triggerEvent("succeeded",this)
 break
-case 2:this._triggerEvent("errored",this,Ember.get(this,"error"))
+case 2:this._triggerEvent("errored",this,this.error)
 break
-case 3:this._triggerEvent("canceled",this,Ember.get(this,"cancelReason"))}},_dispose:function(){if(this._disposer){var e=this._disposer
+case 3:this._triggerEvent("canceled",this,this.cancelReason)}},_dispose:function(){if(this._disposer){var e=this._disposer
 this._disposer=null,e()}},_isGeneratorDone:function(){var e=this._generatorState
 return"DONE"===e||"ERRORED"===e},_resumeGenerator:function(e,t){try{n.push(this)
 var r=this._getIterator()[t](e)
@@ -5507,12 +5507,12 @@ var i=this._index
 this._resumeGenerator(n,r),this._advanceIndex(i)&&("ERRORED"!==this._generatorState?this._handleYieldedValue():this._finalize(this._generatorValue,2))},_handleYieldedValue:function(){var e,n,r,i=this._generatorValue
 i?i instanceof t.RawValue?this._proceedWithSimpleValue(i.value):(this._addDisposer(i[t.cancelableSymbol]),i[t.yieldableSymbol]?this._invokeYieldable(i):"function"==typeof i.then?(e=i,n=this,r=this._index,e.then((function(e){n.proceed(r,t.YIELDABLE_CONTINUE,e)}),(function(e){n.proceed(r,t.YIELDABLE_THROW,e)}))):this._proceedWithSimpleValue(i)):this._proceedWithSimpleValue(i)},_proceedWithSimpleValue:function(e){this.proceed(this._index,t.YIELDABLE_CONTINUE,e)},_addDisposer:function(e){if("function"==typeof e){var t=this._disposer
 this._disposer=t?function(){t(),e()}:e}},_invokeYieldable:function(e){try{var n=e[t.yieldableSymbol](this,this._index)
-this._addDisposer(n)}catch(r){}},_triggerEvent:function(e){if(this._hasEnabledEvents){var t=Ember.get(this,"task.context"),n=Ember.get(this,"task._propertyName")
+this._addDisposer(n)}catch(r){}},_triggerEvent:function(e){if(this._hasEnabledEvents){var t=this.task&&this.task.context,n=this.task&&this.task._propertyName
 if(t&&t.trigger&&n){for(var r=arguments.length,i=new Array(r>1?r-1:0),o=1;o<r;o++)i[o-1]=arguments[o]
 t.trigger.apply(t,["".concat(n,":").concat(e)].concat(i))}}}}
 o[t.yieldableSymbol]=function(e,n){var r=this
 return r._hasSubscribed=!0,r._onFinalize((function(){var i=r._completionState
-1===i?e.proceed(n,t.YIELDABLE_CONTINUE,r.value):2===i?e.proceed(n,t.YIELDABLE_THROW,r.error):3===i&&e.proceed(n,t.YIELDABLE_CANCEL,null)})),function(){if("PERFORM_TYPE_UNLINKED"!==r._performType){if("PERFORM_TYPE_DEFAULT"===r._performType){var t=Ember.get(e,"task.context"),n=Ember.get(r,"task.context")
+1===i?e.proceed(n,t.YIELDABLE_CONTINUE,r.value):2===i?e.proceed(n,t.YIELDABLE_THROW,r.error):3===i&&e.proceed(n,t.YIELDABLE_CANCEL,null)})),function(){if("PERFORM_TYPE_UNLINKED"!==r._performType){if("PERFORM_TYPE_DEFAULT"===r._performType){var t=e.task&&e.task.context,n=r.task&&r.task.context
 if(t&&n&&t!==n&&t.isDestroying&&Ember.get(r,"isRunning")){var i="`".concat(e.task._propertyName,"`"),o="`".concat(r.task._propertyName,"`")
 console.warn('ember-concurrency detected a potentially hazardous "self-cancel loop" between parent task '.concat(i," and child task ").concat(o,". If you want child task ").concat(o," to be canceled when parent task ").concat(i," is canceled, please change `.perform()` to `.linked().perform()`. If you want child task ").concat(o," to keep running after parent task ").concat(i," is canceled, change it to `.unlinked().perform()`"))}}r.cancel()}}}
 var s=Ember.Object.extend(o)
