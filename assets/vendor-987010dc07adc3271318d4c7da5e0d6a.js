@@ -5261,8 +5261,10 @@ return function(){if(!r&&e&&n){var i=Ember.String.classify(e)
 t.register(i,n),r=!0}}}
 var t=Ember.libraries}))
 define("ember-cli-app-version/utils/regexp",["exports"],(function(e){"use strict"
-Object.defineProperty(e,"__esModule",{value:!0})
-e.versionRegExp=/\d+[.]\d+[.]\d+/,e.versionExtendedRegExp=/\d+[.]\d+[.]\d+-[a-z]*([.]\d+)?/,e.shaRegExp=/[a-z\d]{8}$/})),define("ember-code-snippet/-private/extension",["exports"],(function(e){"use strict"
+Object.defineProperty(e,"__esModule",{value:!0}),e.shaRegExp=e.versionExtendedRegExp=e.versionRegExp=void 0
+e.versionRegExp=/\d+[.]\d+[.]\d+/
+e.versionExtendedRegExp=/\d+[.]\d+[.]\d+-[a-z]*([.]\d+)?/
+e.shaRegExp=/[a-z\d]{8}$/})),define("ember-code-snippet/-private/extension",["exports"],(function(e){"use strict"
 Object.defineProperty(e,"__esModule",{value:!0}),e.default=function(e){var t=/\.(\w+)$/i.exec(e)
 return t?t[1].toLowerCase():void 0}})),define("ember-code-snippet/-private/get-snippet",["exports","ember-code-snippet/snippets","ember-code-snippet/-private/language","ember-code-snippet/-private/extension","ember-code-snippet/-private/unindent"],(function(e,t,n,r,i){"use strict"
 Object.defineProperty(e,"__esModule",{value:!0}),e.default=function(e){var o=!(arguments.length>1&&void 0!==arguments[1])||arguments[1],a=e.split("/").reduce((function(e,t){return e&&e[t]}),t.default)
