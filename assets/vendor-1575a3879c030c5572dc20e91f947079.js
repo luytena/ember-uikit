@@ -6354,6 +6354,7 @@ define("ember-load-initializers/index",["exports","require"],(function(e,t){"use
 function n(e){var n=(0,t.default)(e,null,null,!0)
 if(!n)throw new Error(e+" must export an initializer.")
 var r=n.default
+if(!r)throw new Error(e+" must have a default export")
 return r.name||(r.name=e.slice(e.lastIndexOf("/")+1)),r}function r(e,t){return-1!==e.indexOf(t,e.length-t.length)}Object.defineProperty(e,"__esModule",{value:!0}),e.default=function(e,t){for(var i=t+"/initializers/",o=t+"/instance-initializers/",a=[],s=[],u=Object.keys(requirejs._eak_seen),l=0;l<u.length;l++){var c=u[l]
 0===c.lastIndexOf(i,0)?r(c,"-test")||a.push(c):0===c.lastIndexOf(o,0)&&(r(c,"-test")||s.push(c))}(function(e,t){for(var r=0;r<t.length;r++)e.initializer(n(t[r]))})(e,a),function(e,t){for(var r=0;r<t.length;r++)e.instanceInitializer(n(t[r]))}(e,s)}})),define("ember-prism/components/code-block",["exports","@glimmer/component"],(function(e,t){"use strict"
 function n(e){return(n="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function i(e,t){for(var n=0;n<t.length;n++){var r=t[n]
