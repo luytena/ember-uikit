@@ -4529,7 +4529,7 @@ define("@embroider/macros/runtime",["exports"],(function(e){"use strict"
 function t(e){return n.packages[e]}function r(){return n.global}Object.defineProperty(e,"__esModule",{value:!0}),e.config=t,e.each=function(e){if(!Array.isArray(e))throw new Error("the argument to the each() macro must be an array")
 return e},e.getGlobalConfig=r,e.isTesting=function(){let e=n.global,t=e&&e["@embroider/macros"]
 return Boolean(t&&t.isTesting)},e.macroCondition=function(e){return e}
-const n={packages:{"/home/runner/work/ember-uikit/ember-uikit/node_modules/ember-get-config":{config:{modulePrefix:"dummy",environment:"production",rootURL:"/",locationType:"history","ember-uikit":{notification:{pos:"top-right"}},EmberENV:{FEATURES:{},EXTEND_PROTOTYPES:{Date:!1},_APPLICATION_TEMPLATE_WRAPPER:!1,_DEFAULT_ASYNC_OBSERVERS:!0,_JQUERY_INTEGRATION:!1,_TEMPLATE_ONLY_GLIMMER_COMPONENTS:!0},APP:{name:"ember-uikit",version:"5.0.0-beta.8+c917428b"},exportApplicationGlobal:!1}}},global:{"@embroider/macros":{isTesting:!1}}}
+const n={packages:{"/home/runner/work/ember-uikit/ember-uikit/node_modules/ember-get-config":{config:{modulePrefix:"dummy",environment:"production",rootURL:"/",locationType:"history","ember-uikit":{notification:{pos:"top-right"}},EmberENV:{FEATURES:{},EXTEND_PROTOTYPES:{Date:!1},_APPLICATION_TEMPLATE_WRAPPER:!1,_DEFAULT_ASYNC_OBSERVERS:!0,_JQUERY_INTEGRATION:!1,_TEMPLATE_ONLY_GLIMMER_COMPONENTS:!0},APP:{name:"ember-uikit",version:"5.0.0-beta.9+84617948"},exportApplicationGlobal:!1}}},global:{"@embroider/macros":{isTesting:!1}}}
 let i="undefined"!=typeof window?window._embroider_macros_runtime_config:void 0
 if(i){let e={config:t,getGlobalConfig:r,setConfig(e,t){n.packages[e]=t},setGlobalConfig(e,t){n.global[e]=t}}
 for(let t of i)t(e)}})),define("@embroider/util/ember-private-api",["exports","@embroider/macros/es-compat"],(function(e,t){"use strict"
@@ -5251,7 +5251,7 @@ const l=t.timeStamp-n.initial.timeStamp
 if(n.current.overallVelocityX=n.current.distanceX/l||0,n.current.overallVelocityY=n.current.distanceY/l||0,n.current.overallVelocity=Math.abs(n.current.overallVelocityX)>Math.abs(n.current.overallVelocityY)?n.current.overallVelocityX:n.current.overallVelocityY,"touchend"!==t.type){const e=t.timeStamp-n.cache.velocity.timeStamp
 n.current.velocityX=(n.current.distanceX-n.cache.velocity.distanceX)/e||0,n.current.velocityY=(n.current.distanceY-n.cache.velocity.distanceY)/e||0,n.current.velocity=Math.abs(n.current.velocityX)>Math.abs(n.current.velocityY)?n.current.velocityX:n.current.velocityY,n.cache.velocity={distanceX:n.current.distanceX,distanceY:n.current.distanceY,timeStamp:t.timeStamp}}return n.originalEvent=t,n.timeStamp=t.timeStamp,r.data=n,r}})),define("ember-get-config/index",["exports"],(function(e){"use strict"
 Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
-e.default={modulePrefix:"dummy",environment:"production",rootURL:"/",locationType:"history","ember-uikit":{notification:{pos:"top-right"}},EmberENV:{FEATURES:{},EXTEND_PROTOTYPES:{Date:!1},_APPLICATION_TEMPLATE_WRAPPER:!1,_DEFAULT_ASYNC_OBSERVERS:!0,_JQUERY_INTEGRATION:!1,_TEMPLATE_ONLY_GLIMMER_COMPONENTS:!0},APP:{name:"ember-uikit",version:"5.0.0-beta.8+c917428b"},exportApplicationGlobal:!1}})),define("ember-load-initializers/index",["exports","require"],(function(e,t){"use strict"
+e.default={modulePrefix:"dummy",environment:"production",rootURL:"/",locationType:"history","ember-uikit":{notification:{pos:"top-right"}},EmberENV:{FEATURES:{},EXTEND_PROTOTYPES:{Date:!1},_APPLICATION_TEMPLATE_WRAPPER:!1,_DEFAULT_ASYNC_OBSERVERS:!0,_JQUERY_INTEGRATION:!1,_TEMPLATE_ONLY_GLIMMER_COMPONENTS:!0},APP:{name:"ember-uikit",version:"5.0.0-beta.9+84617948"},exportApplicationGlobal:!1}})),define("ember-load-initializers/index",["exports","require"],(function(e,t){"use strict"
 function r(e){var r=(0,t.default)(e,null,null,!0)
 if(!r)throw new Error(e+" must export an initializer.")
 var n=r.default
@@ -5505,11 +5505,11 @@ return this.args.href.startsWith(e)?this.args.href:`${e}${this.args.href}`}retur
 let e=this.href
 "hash"===this.router.location.implementation&&(e=e.replace(/^#/,"")),e.startsWith(this.router.rootURL)||(e=`${this.router.rootURL}${e}`)
 const t=this.router.recognize(e)
-return t?{routeInfo:t,dynamicSegments:d(t)}:null}get active(){if(!this.route||void 0!==this.args.active)return this.args.active??!1
-const{routeInfo:e,dynamicSegments:t}=this.route
-return this.router.isActive(e.name,...t,{queryParams:e.queryParams})}navigate(e){if(e.preventDefault(),"function"==typeof this.args.onClick)this.args.onClick(...[e,this.href].filter(Boolean))
-else if(this.route){const{routeInfo:e,dynamicSegments:t}=this.route
-this.router.transitionTo(e.name,...t,{queryParams:e.queryParams})}}},l=u(a.prototype,"_router",[s],{configurable:!0,enumerable:!0,writable:!0,initializer:null}),u(a.prototype,"navigate",[n.action],Object.getOwnPropertyDescriptor(a.prototype,"navigate"),a.prototype),a)
+return t?{name:t.name.replace(/\.index$/,""),args:[...d(t),...Object.keys(t.queryParams)?[{queryParams:t.queryParams}]:[]]}:null}get active(){if(!this.route||void 0!==this.args.active)return this.args.active??!1
+const{name:e,args:t}=this.route
+return this.router.isActive(e,...t)}navigate(e){if(e.preventDefault(),"function"==typeof this.args.onClick)this.args.onClick(...[e,this.href].filter(Boolean))
+else if(this.route){const{name:e,args:t}=this.route
+this.router.transitionTo(e,...t)}}},l=u(a.prototype,"_router",[s],{configurable:!0,enumerable:!0,writable:!0,initializer:null}),u(a.prototype,"navigate",[n.action],Object.getOwnPropertyDescriptor(a.prototype,"navigate"),a.prototype),a)
 e.default=h,(0,t.setComponentTemplate)(c,h)})),define("ember-uikit/components/uk-badge",["exports","@ember/component","@ember/template-factory","@ember/component/template-only"],(function(e,t,r,n){"use strict"
 Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
 const i=(0,r.createTemplateFactory)({id:"UhcwqFNH",block:'[[[11,1],[24,0,"uk-badge"],[17,1],[12],[1,"\\n  "],[41,[48,[30,3]],[[[18,3,null]],[]],[[[1,[30,2]]],[]]],[1,"\\n"],[13]],["&attrs","@label","&default"],false,["if","has-block","yield"]]',moduleName:"ember-uikit/components/uk-badge.hbs",isStrictMode:!1})
