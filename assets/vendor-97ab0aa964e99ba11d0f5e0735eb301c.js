@@ -4529,7 +4529,7 @@ define("@embroider/macros/runtime",["exports"],(function(e){"use strict"
 function t(e){return n.packages[e]}function r(){return n.global}Object.defineProperty(e,"__esModule",{value:!0}),e.config=t,e.each=function(e){if(!Array.isArray(e))throw new Error("the argument to the each() macro must be an array")
 return e},e.getGlobalConfig=r,e.isTesting=function(){let e=n.global,t=e&&e["@embroider/macros"]
 return Boolean(t&&t.isTesting)},e.macroCondition=function(e){return e}
-const n={packages:{"/home/runner/work/ember-uikit/ember-uikit/node_modules/ember-get-config":{config:{modulePrefix:"dummy",environment:"production",rootURL:"/",locationType:"history","ember-uikit":{notification:{pos:"top-right"}},EmberENV:{FEATURES:{},EXTEND_PROTOTYPES:{Date:!1},_APPLICATION_TEMPLATE_WRAPPER:!1,_DEFAULT_ASYNC_OBSERVERS:!0,_JQUERY_INTEGRATION:!1,_TEMPLATE_ONLY_GLIMMER_COMPONENTS:!0},APP:{name:"ember-uikit",version:"5.0.0-beta.11+98a84619"},exportApplicationGlobal:!1}}},global:{"@embroider/macros":{isTesting:!1}}}
+const n={packages:{},global:{"@embroider/macros":{isTesting:!1}}}
 let i="undefined"!=typeof window?window._embroider_macros_runtime_config:void 0
 if(i){let e={config:t,getGlobalConfig:r,setConfig(e,t){n.packages[e]=t},setGlobalConfig(e,t){n.global[e]=t}}
 for(let t of i)t(e)}})),define("@embroider/util/ember-private-api",["exports","@embroider/macros/es-compat"],(function(e,t){"use strict"
@@ -5249,9 +5249,7 @@ return 360-(i<0?360+i:i)}(n.initial.x,n.initial.y,t.clientX,t.clientY)
 var i,o,s,a
 const l=t.timeStamp-n.initial.timeStamp
 if(n.current.overallVelocityX=n.current.distanceX/l||0,n.current.overallVelocityY=n.current.distanceY/l||0,n.current.overallVelocity=Math.abs(n.current.overallVelocityX)>Math.abs(n.current.overallVelocityY)?n.current.overallVelocityX:n.current.overallVelocityY,"touchend"!==t.type){const e=t.timeStamp-n.cache.velocity.timeStamp
-n.current.velocityX=(n.current.distanceX-n.cache.velocity.distanceX)/e||0,n.current.velocityY=(n.current.distanceY-n.cache.velocity.distanceY)/e||0,n.current.velocity=Math.abs(n.current.velocityX)>Math.abs(n.current.velocityY)?n.current.velocityX:n.current.velocityY,n.cache.velocity={distanceX:n.current.distanceX,distanceY:n.current.distanceY,timeStamp:t.timeStamp}}return n.originalEvent=t,n.timeStamp=t.timeStamp,r.data=n,r}})),define("ember-get-config/index",["exports"],(function(e){"use strict"
-Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
-e.default={modulePrefix:"dummy",environment:"production",rootURL:"/",locationType:"history","ember-uikit":{notification:{pos:"top-right"}},EmberENV:{FEATURES:{},EXTEND_PROTOTYPES:{Date:!1},_APPLICATION_TEMPLATE_WRAPPER:!1,_DEFAULT_ASYNC_OBSERVERS:!0,_JQUERY_INTEGRATION:!1,_TEMPLATE_ONLY_GLIMMER_COMPONENTS:!0},APP:{name:"ember-uikit",version:"5.0.0-beta.11+98a84619"},exportApplicationGlobal:!1}})),define("ember-load-initializers/index",["exports","require"],(function(e,t){"use strict"
+n.current.velocityX=(n.current.distanceX-n.cache.velocity.distanceX)/e||0,n.current.velocityY=(n.current.distanceY-n.cache.velocity.distanceY)/e||0,n.current.velocity=Math.abs(n.current.velocityX)>Math.abs(n.current.velocityY)?n.current.velocityX:n.current.velocityY,n.cache.velocity={distanceX:n.current.distanceX,distanceY:n.current.distanceY,timeStamp:t.timeStamp}}return n.originalEvent=t,n.timeStamp=t.timeStamp,r.data=n,r}})),define("ember-load-initializers/index",["exports","require"],(function(e,t){"use strict"
 function r(e){var r=(0,t.default)(e,null,null,!0)
 if(!r)throw new Error(e+" must export an initializer.")
 var n=r.default
@@ -5396,12 +5394,12 @@ e.default=n})),define("ember-truth-helpers/helpers/is-array",["exports","@ember/
 function n(e){for(let t=0,n=e.length;t<n;t++)if(!1===(0,r.isArray)(e[t]))return!1
 return!0}Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0,e.isArray=n
 var i=(0,t.helper)(n)
-e.default=i}))
-define("ember-truth-helpers/helpers/is-empty",["exports","@ember/component/helper","@ember/utils"],(function(e,t,r){"use strict"
+e.default=i})),define("ember-truth-helpers/helpers/is-empty",["exports","@ember/component/helper","@ember/utils"],(function(e,t,r){"use strict"
 Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
 var n=(0,t.helper)((function(e){let[t]=e
 return(0,r.isEmpty)(t)}))
-e.default=n})),define("ember-truth-helpers/helpers/is-equal",["exports","@ember/component/helper","@ember/utils"],(function(e,t,r){"use strict"
+e.default=n}))
+define("ember-truth-helpers/helpers/is-equal",["exports","@ember/component/helper","@ember/utils"],(function(e,t,r){"use strict"
 function n(e){let[t,n]=e
 return(0,r.isEqual)(t,n)}Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0,e.isEqual=n
 var i=(0,t.helper)(n)
@@ -5587,12 +5585,12 @@ e.default=y,(0,t.setComponentTemplate)(v,y)})),define("ember-uikit/components/uk
 Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
 const i=(0,r.createTemplateFactory)({id:"pkxPY70M",block:'[[[11,0],[24,0,"uk-modal-body"],[17,1],[12],[1,"\\n  "],[18,2,null],[1,"\\n"],[13]],["&attrs","&default"],false,["yield"]]',moduleName:"ember-uikit/components/uk-modal/body.hbs",isStrictMode:!1})
 var o=(0,t.setComponentTemplate)(i,(0,n.default)())
-e.default=o}))
-define("ember-uikit/components/uk-modal/footer",["exports","@ember/component","@ember/template-factory","@ember/component/template-only"],(function(e,t,r,n){"use strict"
+e.default=o})),define("ember-uikit/components/uk-modal/footer",["exports","@ember/component","@ember/template-factory","@ember/component/template-only"],(function(e,t,r,n){"use strict"
 Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
 const i=(0,r.createTemplateFactory)({id:"UNt7VPJC",block:'[[[11,0],[24,0,"uk-modal-footer"],[17,1],[12],[1,"\\n  "],[18,2,null],[1,"\\n"],[13]],["&attrs","&default"],false,["yield"]]',moduleName:"ember-uikit/components/uk-modal/footer.hbs",isStrictMode:!1})
 var o=(0,t.setComponentTemplate)(i,(0,n.default)())
-e.default=o})),define("ember-uikit/components/uk-modal/header",["exports","@ember/component","@ember/template-factory","@ember/component/template-only"],(function(e,t,r,n){"use strict"
+e.default=o}))
+define("ember-uikit/components/uk-modal/header",["exports","@ember/component","@ember/template-factory","@ember/component/template-only"],(function(e,t,r,n){"use strict"
 Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
 const i=(0,r.createTemplateFactory)({id:"UEq8pyj4",block:'[[[11,0],[24,0,"uk-modal-header"],[17,1],[12],[1,"\\n  "],[18,2,null],[1,"\\n"],[13]],["&attrs","&default"],false,["yield"]]',moduleName:"ember-uikit/components/uk-modal/header.hbs",isStrictMode:!1})
 var o=(0,t.setComponentTemplate)(i,(0,n.default)())
@@ -5660,11 +5658,11 @@ Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
 var i=(0,r.modifier)((function(e,r,i){Object.entries(i).forEach((r=>{let[i,o]=r
 n.default.util.on(e,i,(function(){for(var e=arguments.length,r=new Array(e),n=0;n<e;n++)r[n]=arguments[n]
 return(0,t.run)((()=>o(...r)))}))}))}))
-e.default=i})),define("ember-uikit/services/notification",["exports","@ember/service","ember-get-config","uikit"],(function(e,t,r,n){"use strict"
+e.default=i})),define("ember-uikit/services/notification",["exports","@ember/application","@ember/service","uikit"],(function(e,t,r,n){"use strict"
 var i,o,s,a,l,u,c,d,h,p,f
 function m(e,t,r,n){r&&Object.defineProperty(e,t,{enumerable:r.enumerable,configurable:r.configurable,writable:r.writable,value:r.initializer?r.initializer.call(n):void 0})}function g(e,t,r,n,i){var o={}
-return Object.keys(n).forEach((function(e){o[e]=n[e]})),o.enumerable=!!o.enumerable,o.configurable=!!o.configurable,("value"in o||o.initializer)&&(o.writable=!0),o=r.slice().reverse().reduce((function(r,n){return n(e,t,r)||r}),o),i&&void 0!==o.initializer&&(o.value=o.initializer?o.initializer.call(i):void 0,o.initializer=void 0),void 0===o.initializer&&(Object.defineProperty(e,t,o),o=null),o}function v(e){return function(){return{value(t){let r=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{}
-return this._notification(t,Object.assign(r,{status:e}))}}}}Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
-let b=(i=v("default"),o=v("primary"),s=v("success"),a=v("warning"),l=v("danger"),u=class extends t.default{constructor(){super(...arguments),m(this,"default",c,this),m(this,"primary",d,this),m(this,"success",h,this),m(this,"warning",p,this),m(this,"danger",f,this)}_notification(e,t){const i=n.default.notification(Object.assign(r.default["ember-uikit"]?.notification??{},t,{message:e}))
-return i?.$el?new Promise((e=>n.default.util.on(i.$el,"close",e))):Promise.resolve()}},c=g(u.prototype,"default",[i],{configurable:!0,enumerable:!0,writable:!0,initializer:null}),d=g(u.prototype,"primary",[o],{configurable:!0,enumerable:!0,writable:!0,initializer:null}),h=g(u.prototype,"success",[s],{configurable:!0,enumerable:!0,writable:!0,initializer:null}),p=g(u.prototype,"warning",[a],{configurable:!0,enumerable:!0,writable:!0,initializer:null}),f=g(u.prototype,"danger",[l],{configurable:!0,enumerable:!0,writable:!0,initializer:null}),u)
+return Object.keys(n).forEach((function(e){o[e]=n[e]})),o.enumerable=!!o.enumerable,o.configurable=!!o.configurable,("value"in o||o.initializer)&&(o.writable=!0),o=r.slice().reverse().reduce((function(r,n){return n(e,t,r)||r}),o),i&&void 0!==o.initializer&&(o.value=o.initializer?o.initializer.call(i):void 0,o.initializer=void 0),void 0===o.initializer&&(Object.defineProperty(e,t,o),o=null),o}function v(e){return function(){return{value(r){let i=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{}
+const o=(0,t.getOwner)(this).resolveRegistration("config:environment")["ember-uikit"]?.notification??{},s=n.default.notification({...o,...i,status:e,message:r})
+return s?.$el?new Promise((e=>n.default.util.on(s.$el,"close",e))):Promise.resolve()}}}}Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
+let b=(i=v("default"),o=v("primary"),s=v("success"),a=v("warning"),l=v("danger"),u=class extends r.default{constructor(){super(...arguments),m(this,"default",c,this),m(this,"primary",d,this),m(this,"success",h,this),m(this,"warning",p,this),m(this,"danger",f,this)}},c=g(u.prototype,"default",[i],{configurable:!0,enumerable:!0,writable:!0,initializer:null}),d=g(u.prototype,"primary",[o],{configurable:!0,enumerable:!0,writable:!0,initializer:null}),h=g(u.prototype,"success",[s],{configurable:!0,enumerable:!0,writable:!0,initializer:null}),p=g(u.prototype,"warning",[a],{configurable:!0,enumerable:!0,writable:!0,initializer:null}),f=g(u.prototype,"danger",[l],{configurable:!0,enumerable:!0,writable:!0,initializer:null}),u)
 e.default=b}))
