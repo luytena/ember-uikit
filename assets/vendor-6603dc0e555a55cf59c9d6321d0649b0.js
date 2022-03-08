@@ -4358,7 +4358,8 @@ function u(e){l.highlightedCode=e,i.hooks.run("before-insert",l),l.element.inner
 if(i.hooks.run("before-highlight",l),l.grammar)if(r&&e.Worker){var c=new Worker(i.filename)
 c.onmessage=function(e){u(e.data)},c.postMessage(JSON.stringify({language:l.language,code:l.code,immediateClose:!0}))}else u(i.highlight(l.code,l.grammar,l.language))
 else u(i.util.encode(l.code))},highlight:function(e,t,r){var n={code:e,grammar:t,language:r}
-return i.hooks.run("before-tokenize",n),n.tokens=i.tokenize(n.code,n.grammar),i.hooks.run("after-tokenize",n),o.stringify(i.util.encode(n.tokens),n.language)},tokenize:function(e,t){var r=t.rest
+if(i.hooks.run("before-tokenize",n),!n.grammar)throw new Error('The language "'+n.language+'" has no grammar.')
+return n.tokens=i.tokenize(n.code,n.grammar),i.hooks.run("after-tokenize",n),o.stringify(i.util.encode(n.tokens),n.language)},tokenize:function(e,t){var r=t.rest
 if(r){for(var n in r)t[n]=r[n]
 delete t.rest}var i=new l
 return u(i,i.head,e),a(e,i,t,i.head,0),function(e){var t=[],r=e.head.next
@@ -4529,9 +4530,7 @@ return o(0,e,t,{named:{},positional:[]})},r=(0,t.default)(require("@glimmer/runt
 let{isCurriedComponentDefinition:n,CurriedComponentDefinition:i,curry:o,CurriedValue:s}=r
 e.isCurriedComponentDefinition=n,n||(e.isCurriedComponentDefinition=n=function(e){return e instanceof s})})),define("@embroider/util/index",["exports","@ember/debug","@ember/application","@embroider/util/ember-private-api","@ember/component/helper"],(function(e,t,r,n,i){"use strict"
 function o(e,t){return"string"==typeof e?function(e,t){let i=(0,r.getOwner)(t)
-return(0,n.lookupCurriedComponentDefinition)(e,i)}(e,t):(0,n.isCurriedComponentDefinition)(e)||null==e?e:function(e,t){let i=(0,r.getOwner)(t),o=function(e,t){let r=t.lookup("service:-ensure-registered")
-return r.register(e,t)}(e,i)
-return(0,n.lookupCurriedComponentDefinition)(o,i)}(e,t)}Object.defineProperty(e,"__esModule",{value:!0}),e.EnsureSafeComponentHelper=void 0,e.ensureSafeComponent=o
+return(0,n.lookupCurriedComponentDefinition)(e,i)}(e,t):(0,n.isCurriedComponentDefinition)(e)||null==e?e:e}Object.defineProperty(e,"__esModule",{value:!0}),e.EnsureSafeComponentHelper=void 0,e.ensureSafeComponent=o
 class s extends i.default{compute(e){let[t]=e
 return o(t,this)}}e.EnsureSafeComponentHelper=s})),define("@embroider/util/services/ensure-registered",["exports","@ember/service","@ember/application"],(function(e,t,r){"use strict"
 function n(e,t,r){return t in e?Object.defineProperty(e,t,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[t]=r,e}Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
